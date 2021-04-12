@@ -4,7 +4,6 @@ import RecipeList from './RecipeList';
 import InputTag from './InputTag';
 
 const SearchPage = (props) => {
-  const [input, setInput] = useState('');
   const [recipeListDefault, setRecipeListDefault] = useState();
   const [recipeList, setRecipeList] = useState();
 
@@ -16,12 +15,13 @@ const SearchPage = (props) => {
          setRecipeListDefault(data)
        });}
 
-  const updateInput = async (input) => {
-     const filtered = recipeListDefault.filter(recipe => {
-      return recipe.name.toLowerCase().includes(input.toLowerCase())
-     })
-     setInput(input);
-     setRecipeList(filtered);
+  const updateTag = async (recipes) => {
+    recipes = recipes.map(v => v.toLowerCase());
+    console.log(recipes);
+    const filtered = recipeListDefault.filter(recipe => {
+      return recipes.includes(recipe.name.toLowerCase());
+    })
+    setRecipeList(filtered);
   }
 
   useEffect( () => {fetchData()},[]);
@@ -29,11 +29,7 @@ const SearchPage = (props) => {
   return (
     <>
       <h1>Recipe List</h1>
-      <InputTag onChange={updateInput}/>
-      <SearchBar
-       input={input}
-       onChange={updateInput}
-      />
+      <InputTag onChange={updateTag}/>
       <RecipeList recipeList={recipeList}/>
     </>
    );

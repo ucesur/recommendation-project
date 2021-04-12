@@ -25,8 +25,7 @@ const InputTag = ({onChange:setKeyword}) => {
           e.target.value=null;
         }
       }
-      console.log(val);
-      setKeyword(val);
+      setKeyword(tags);
     }
   }
 
