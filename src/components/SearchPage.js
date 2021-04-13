@@ -15,9 +15,8 @@ const SearchPage = (props) => {
          setRecipeListDefault(data)
        });}
 
-  const updateTag = async (recipes) => {
+  const updateRecipes = async (recipes) => {
     recipes = recipes.map(v => v.toLowerCase());
-    console.log(recipes);
     const filtered = recipeListDefault.filter(recipe => {
       return recipes.includes(recipe.name.toLowerCase());
     })
@@ -29,7 +28,7 @@ const SearchPage = (props) => {
   return (
     <>
       <h1>Recipe List</h1>
-      <InputTag onChange={updateTag}/>
+      <InputTag onChange={updateRecipes}/>
       <RecipeList recipeList={recipeList}/>
     </>
    );
