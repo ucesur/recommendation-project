@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import SearchBar from './SearchBar';
 import RecipeList from './RecipeList';
 import InputTag from './InputTag';
 
