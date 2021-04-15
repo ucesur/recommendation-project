@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/inputtag.css';
 
 const InputTag = ({onChange:setKeyword}) => {
@@ -8,6 +8,7 @@ const InputTag = ({onChange:setKeyword}) => {
   const onKeyDown = (e) => {
     let val = e.target.value;
     if ((e.key === ' ' || e.key === ',') && val) {
+      val = val.replace(/\s/g, '').replace(',','');
       if (tags.find(tag => tag.toLowerCase() === val.toLowerCase())) {
         e.target.value=null;
         return;
@@ -18,16 +19,21 @@ const InputTag = ({onChange:setKeyword}) => {
     else if (e.key === 'Backspace' && !val) {
       removeTag(tags.length - 1);
     }
-    else if (e.key === 'Enter' && tags.length > 0) {
+    else if (e.key === 'Enter') {
       if (val) {
         if (!tags.find(tag => tag.toLowerCase() === val.toLowerCase())) {
           setTags([...tags,val]);
           e.target.value=null;
         }
       }
-      setKeyword(tags);
     }
   }
+
+  useEffect(() => {
+    if (tags.length > 0) {
+      setKeyword(tags);
+    }
+  }, [tags]);
 
   const removeTag = (i) => {
     const newTags = [...tags];
