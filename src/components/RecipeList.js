@@ -1,8 +1,10 @@
 import React from 'react';
+import Recipe from './Recipe';
 
 const RecipeList = ({recipeList=[]}) => {
   return (
     <>
+    <Recipe/>
     {
       recipeList.map((data,index) => {
         if (data) {
