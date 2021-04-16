@@ -15,6 +15,11 @@ const SearchPage = (props) => {
        });}
 
   const updateRecipes = async (recipes) => {
+    if (recipes.length === 0) {
+      setRecipeList(recipeListDefault);
+      console.log(recipeListDefault);
+      return true;
+    }
     recipes = recipes.map(v => v.toLowerCase());
     const filtered = recipeListDefault.filter(recipe => {
       return recipes.includes(recipe.name.toLowerCase());

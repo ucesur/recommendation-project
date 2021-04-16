@@ -8,13 +8,14 @@ const InputTag = ({onChange:setKeyword}) => {
   const onKeyDown = (e) => {
     let val = e.target.value;
     if ((e.key === ' ' || e.key === ',') && val) {
-      val = val.replace(/\s/g, '').replace(',','');
-      if (tags.find(tag => tag.toLowerCase() === val.toLowerCase())) {
-        e.target.value=null;
+      val = val.replaceAll(/\s/g, '').replaceAll(',','');
+      e.target.value=null;
+      if (tags.find(tag => tag.toLowerCase() === val.toLowerCase()) ||
+          val === '' ||
+          val === ',') {
         return;
       }
       setTags([...tags,val]);
-      e.target.value=null;
     }
     else if (e.key === 'Backspace' && !val) {
       removeTag(tags.length - 1);
@@ -29,11 +30,7 @@ const InputTag = ({onChange:setKeyword}) => {
     }
   }
 
-  useEffect(() => {
-    if (tags.length > 0) {
-      setKeyword(tags);
-    }
-  }, [tags]);
+  useEffect(() => {setKeyword(tags)}, [tags]);
 
   const removeTag = (i) => {
     const newTags = [...tags];
