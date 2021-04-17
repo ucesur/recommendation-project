@@ -4,7 +4,22 @@ import Recipe from './Recipe';
 const RecipeList = ({recipeList=[]}) => {
   return (
     <>
-    <Recipe/>
+    <div className="container-fluid d-flex">
+      <div className="row">
+        <div className="col-md-4">
+          <Recipe/>
+        </div>
+        <div className="col-md-4">
+          <Recipe/>
+        </div>
+        <div className="col-md-4">
+          <Recipe/>
+        </div>
+        <div className="col-md-4">
+          <Recipe/>
+        </div>
+      </div>
+    </div>
     {
       recipeList.map((data,index) => {
         if (data) {
