@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/inputtag.css';
+import Tag from './Tag'
 
 const InputTag = ({onChange:setKeyword}) => {
 
@@ -45,8 +46,7 @@ const InputTag = ({onChange:setKeyword}) => {
       <ul className="input-tag__tags">
         { tags.map((tag, i) => (
           <li key={tag}>
-            {tag}
-            <button type="button" onClick={() => {removeTag(i); }}>+</button>
+            <Tag id={i} text={tag} onAction={removeTag}/>
           </li>
         ))}
         <li className="input-tag__tags__input"><input type="text" style={BarStyling} onKeyDown={onKeyDown}/></li>
@@ -54,6 +54,5 @@ const InputTag = ({onChange:setKeyword}) => {
     </div>
     );
 }
-
 
 export default InputTag
