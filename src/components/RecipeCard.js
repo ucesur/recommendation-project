@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Recipe = props => {
+const RecipeCard = props => {
   return (
     <div className="card text-center">
       <div className="overflow">
@@ -22,4 +22,4 @@ const Recipe = props => {
   );
 }
 
-export default Recipe
+export default RecipeCard

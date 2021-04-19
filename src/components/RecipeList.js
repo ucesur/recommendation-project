@@ -1,5 +1,5 @@
 import React from 'react';
-import Recipe from './Recipe';
+import RecipeCard from './RecipeCard';
 
 const RecipeList = ({recipeList=[]}) => {
   return (
@@ -7,16 +7,16 @@ const RecipeList = ({recipeList=[]}) => {
     <div className="container-fluid d-flex">
       <div className="row">
         <div className="col-md-4">
-          <Recipe/>
+          <RecipeCard/>
         </div>
         <div className="col-md-4">
-          <Recipe/>
+          <RecipeCard/>
         </div>
         <div className="col-md-4">
-          <Recipe/>
+          <RecipeCard/>
         </div>
         <div className="col-md-4">
-          <Recipe/>
+          <RecipeCard/>
         </div>
       </div>
     </div>
