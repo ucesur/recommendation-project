@@ -22,6 +22,7 @@ const InputTag = ({onChange:setKeyword}) => {
       removeTag(tags.length - 1);
     }
     else if (e.key === 'Enter') {
+      val = val.replaceAll(/\s/g, '').replaceAll(',','');
       if (val) {
         if (!tags.find(tag => tag.toLowerCase() === val.toLowerCase())) {
           setTags([...tags,val]);
