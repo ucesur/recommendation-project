@@ -51,14 +51,14 @@ const InputTag = ({onChange:setKeyword}) => {
   const BarStyling = {background:"#F2F1F9", border:"none", padding:"0.5rem"};
 
   return (
-    <div className="input-tag">
-      <ul className="input-tag__tags">
+    <div>
+      <ul>
         { tags.map((tag, i) => (
           <li key={tag}>
             <Tag id={i} text={tag} onAction={removeTag}/>
           </li>
         ))}
-        <li className="input-tag__tags__input">
+        <li>
           <input value={input} type="text" style={BarStyling}
                  onKeyDown={onKeyDown} onChange={onChange}/>
         </li>
