@@ -5,12 +5,13 @@ import Tag from './Tag'
 const InputTag = ({onChange:setKeyword}) => {
 
   const [tags, setTags] = useState([]);
+  const [input, setInput] = useState();
 
   const onKeyDown = (e) => {
     let val = e.target.value;
     if ((e.key === ' ' || e.key === ',') && val) {
-      val = val.replaceAll(/\s/g, '').replaceAll(',','');
-      e.target.value=null;
+      val = val.replace(/\s/g, '').replace(',','');
+      setInput('');
       if (tags.find(tag => tag.toLowerCase() === val.toLowerCase()) ||
           val === '' ||
           val === ',') {
@@ -22,14 +23,21 @@ const InputTag = ({onChange:setKeyword}) => {
       removeTag(tags.length - 1);
     }
     else if (e.key === 'Enter') {
-      val = val.replaceAll(/\s/g, '').replaceAll(',','');
+      val = val.replace(/\s/g, '').replace(',','');
       if (val) {
         if (!tags.find(tag => tag.toLowerCase() === val.toLowerCase())) {
           setTags([...tags,val]);
-          e.target.value=null;
+          setInput('');
         }
       }
     }
+  }
+
+  const onChange = (e) => {
+    let val = e.target.value;
+    val = val.replace(/\s/g, '').replace(',','');
+    console.log(val);
+    setInput(val)
   }
 
   useEffect(() => {setKeyword(tags)}, [tags]);
@@ -50,7 +58,10 @@ const InputTag = ({onChange:setKeyword}) => {
             <Tag id={i} text={tag} onAction={removeTag}/>
           </li>
         ))}
-        <li className="input-tag__tags__input"><input type="text" style={BarStyling} onKeyDown={onKeyDown}/></li>
+        <li className="input-tag__tags__input">
+          <input value={input} type="text" style={BarStyling}
+                 onKeyDown={onKeyDown} onChange={onChange}/>
+        </li>
       </ul>
     </div>
     );
