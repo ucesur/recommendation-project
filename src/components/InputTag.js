@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/inputtag.css';
 import Tag from './Tag'
+import TextField from '@material-ui/core/TextField';
 
 const InputTag = ({onChange:setKeyword}) => {
 
@@ -52,17 +52,13 @@ const InputTag = ({onChange:setKeyword}) => {
 
   return (
     <div>
-      <ul>
         { tags.map((tag, i) => (
-          <li key={tag}>
             <Tag id={i} text={tag} onAction={removeTag}/>
-          </li>
         ))}
-        <li>
-          <input value={input} type="text" style={BarStyling}
-                 onKeyDown={onKeyDown} onChange={onChange}/>
-        </li>
-      </ul>
+        <TextField id="outlined-basic" label="Ingredients" variant="outlined"
+                     value={input} onKeyDown={onKeyDown} onChange={onChange}
+                     fullWidth/>
+
     </div>
     );
 }
