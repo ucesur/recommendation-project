@@ -10,14 +10,13 @@ const SearchPage = (props) => {
   const fetchData = async () => {
     db.collection("recipes").onSnapshot(snapshot => {
       const data = snapshot.docs.map(doc => doc.data())
-      setRecipeList(data)
       setRecipeListDefault(data)
     })
   }
 
   const updateRecipes = async (recipes) => {
     if (recipes.length === 0) {
-      setRecipeList(recipeListDefault);
+      setRecipeList([]);
       return true;
     }
     recipes = recipes.map(v => v.toLowerCase());
