@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import RecipeList from './RecipeList';
 import InputTag from './InputTag';
+import db from "../config";
 
 const SearchPage = (props) => {
   const [recipeListDefault, setRecipeListDefault] = useState();
   const [recipeList, setRecipeList] = useState();
 
   const fetchData = async () => {
-    return await fetch('https://restcountries.eu/rest/v2/all')
-      .then(response => response.json())
-      .then(data => {
-         setRecipeList(data)
-         setRecipeListDefault(data)
-       });}
+    db.collection("recipes").onSnapshot(snapshot => {
+      const data = snapshot.docs.map(doc => doc.data())
+      setRecipeList(data)
+      setRecipeListDefault(data)
+    })
+  }
 
   const updateRecipes = async (recipes) => {
     if (recipes.length === 0) {
@@ -21,7 +22,7 @@ const SearchPage = (props) => {
     }
     recipes = recipes.map(v => v.toLowerCase());
     const filtered = recipeListDefault.filter(recipe => {
-      return recipes.includes(recipe.name.toLowerCase());
+      return recipes.includes(recipe.title.toLowerCase());
     })
     setRecipeList(filtered);
   }
