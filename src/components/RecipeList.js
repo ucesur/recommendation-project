@@ -10,7 +10,8 @@ const RecipeList = ({recipeList=[]}) => {
         recipeList.map(recipe => {
             return (
               <div className="col-md-4">
-                <RecipeCard title={recipe.title} description={recipe.description}/>
+                <RecipeCard title={recipe.title} description={recipe.description}
+                            tags={recipe.tags}/>
               </div>
             )
           })

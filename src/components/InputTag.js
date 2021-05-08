@@ -66,7 +66,7 @@ const InputTag = ({onChange:setKeyword}) => {
     <div>
       <Box display="flex" flexDirection="row" alignItems="center" padding={1}>
         { tags.map((tag, i) => (
-            <Tag id={i} text={tag} onAction={removeTag}/>
+            <Tag id={i} text={tag} onAction={removeTag} basic={false}/>
         ))}
         <TextField  className={classes.textField} id="outlined-basic"
                    label="Ingredients" variant="outlined" value={input}
