@@ -65,7 +65,7 @@ const InputTag = ({onChange:setKeyword}) => {
 
   return (
     <div>
-      <Box display="flex" flexDirection="row" alignItems="stretch" padding={1}>
+      <Box display="flex" flexDirection="row" alignItems="center" padding={1}>
         { tags.map((tag, i) => (
             <Tag id={i} text={tag} onAction={removeTag}/>
         ))}
