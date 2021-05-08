@@ -1,7 +1,5 @@
 import React from 'react';
 
-import db from "../config";
-
 const RecipeCard = props => {
 
   return (
