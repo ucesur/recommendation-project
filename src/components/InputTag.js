@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Tag from './Tag'
-import TextField from '@material-ui/core/TextField';
+import { TextField, Box } from '@material-ui/core';
+import { makeStyles } from "@material-ui/core/styles";
 
 const InputTag = ({onChange:setKeyword}) => {
 
@@ -48,17 +49,30 @@ const InputTag = ({onChange:setKeyword}) => {
     setTags(newTags);
   }
 
-  const BarStyling = {background:"#F2F1F9", border:"none", padding:"0.5rem"};
+  const useStyles = makeStyles(theme => ({
+    root: {
+      display: "flex",
+      flexWrap: "wrap"
+    },
+    textField: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: "100%"
+    }
+  }));
+
+  const classes = useStyles();
 
   return (
     <div>
+      <Box display="flex" flexDirection="row" alignItems="stretch" padding={1}>
         { tags.map((tag, i) => (
             <Tag id={i} text={tag} onAction={removeTag}/>
         ))}
-        <TextField id="outlined-basic" label="Ingredients" variant="outlined"
-                     value={input} onKeyDown={onKeyDown} onChange={onChange}
-                     fullWidth/>
-
+        <TextField  className={classes.textField} id="outlined-basic"
+                   label="Ingredients" variant="outlined" value={input}
+                   onKeyDown={onKeyDown} onChange={onChange}/>
+      </Box>
     </div>
     );
 }
