@@ -22,7 +22,13 @@ const SearchPage = (props) => {
     }
     recipes = recipes.map(v => v.toLowerCase());
     const filtered = recipeListDefault.filter(recipe => {
-      return recipes.includes(recipe.title.toLowerCase());
+      for (var i = 0; i < recipes.length; i++) {
+        if (recipe.title.toLowerCase().includes(recipes[i]))
+        {
+          return true
+        }
+      }
+      return false
     })
     setRecipeList(filtered);
   }
