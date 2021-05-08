@@ -37,7 +37,6 @@ const InputTag = ({onChange:setKeyword}) => {
   const onChange = (e) => {
     let val = e.target.value;
     val = val.replace(/\s/g, '').replace(',','');
-    console.log(val);
     setInput(val)
   }
 
