@@ -56,7 +56,12 @@ const InputTag = ({onChange:setKeyword}) => {
     textField: {
       marginLeft: theme.spacing(1),
       marginRight: theme.spacing(1),
-      width: "100%"
+      minHeight: (tags.length>0) ? '0vh' : '100vh',
+      width: "100%",
+      alignItems: (tags.length>0) ? 'flex' : 'center',
+      flexDirection: 'column',
+      display: "flex",
+      justifyContent: (tags.length>0) ? 'flex-start' : 'center',
     }
   }));
 
@@ -64,12 +69,12 @@ const InputTag = ({onChange:setKeyword}) => {
 
   return (
     <div>
-      <Box display="flex" flexDirection="row" alignItems="center" padding={1}>
+      <Box display="flex" flexDirection="row"  padding={1}>
         { tags.map((tag, i) => (
             <Tag id={i} text={tag} onAction={removeTag} basic={false}/>
         ))}
         <TextField  className={classes.textField} id="outlined-basic"
-                   label="Ingredients" variant="outlined" value={input}
+                   variant="outlined" value={input}
                    onKeyDown={onKeyDown} onChange={onChange}/>
       </Box>
     </div>
